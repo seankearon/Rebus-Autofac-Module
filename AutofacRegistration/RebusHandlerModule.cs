@@ -1,6 +1,6 @@
 using System;
-using System.Linq;
 using Autofac;
+using Rebus;
 
 namespace AutofacRegistration
 {
@@ -19,7 +19,7 @@ namespace AutofacRegistration
 
         private bool IsRebusHandler(Type t)
         {
-            return t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IHandleMessages<>));
+            return typeof(IHandleMessages).IsAssignableFrom(t);
         }
     }
 }
